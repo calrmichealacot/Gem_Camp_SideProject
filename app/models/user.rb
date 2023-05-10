@@ -4,4 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   enum genre: { client: 0, admin: 1 }
+  belongs_to :user
+  mount_uploader :image, ImageUploader
 end
