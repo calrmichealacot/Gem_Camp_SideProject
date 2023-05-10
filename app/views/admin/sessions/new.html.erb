@@ -7,7 +7,7 @@
         <div id="login-box" class="col-md-12">
           <form id="login-form" class="form" action="" method="post">
             <h3 class="text-center text-info">ADMIN</h3>
-            <%= form_for(resource, as: resource_name, url: new_user_session_path(resource_name)) do |f| %>
+            <%= form_for(resource, as: resource_name, url:admin_user_session_path(resource_name)) do |f| %>
               <div class="field">
                 <%= f.label :email, class:"text-info" %><br/>
                 <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
