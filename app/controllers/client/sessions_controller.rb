@@ -10,10 +10,10 @@ class Client::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
    def create
-     @user = User.find_by_email(params[:user][:email])
-     if @user&.admin? && @user&.valid_password?(params[:user][:password])
-       flash[:alert] = "You don't have access to this page"
-       redirect_to client_user_session_path
+     @user = User.find_by_email(params[:email,:password])
+     if @user&.admin?
+       flash[:alert] = "Create a client account to access."
+       redirect_to home_path
      else
        super
      end
@@ -24,10 +24,10 @@ class Client::SessionsController < Devise::SessionsController
      super
    end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  #def configure_sign_in_params
-  #  devise_parameter_sanitizer.permit(:sign_in, keys: [:email][:password])
-  #end
+  def configure_sign_in_params
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:email,:password])
+  end
 end

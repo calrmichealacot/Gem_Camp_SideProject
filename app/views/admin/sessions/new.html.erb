@@ -1,4 +1,3 @@
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <div id="login">
   <h3 class="text-center text-white pt-5">Login form</h3>
   <div class="container">
@@ -7,23 +6,23 @@
         <div id="login-box" class="col-md-12">
           <form id="login-form" class="form" action="" method="post">
             <h3 class="text-center text-info">ADMIN</h3>
-            <%= form_for(resource, as: resource_name, url:admin_user_session_path(resource_name)) do |f| %>
-              <div class="field">
-                <%= f.label :email, class:"text-info" %><br/>
+            <%= form_for(resource, as: resource_name, url: admin_user_session_path(resource_name)) do |f| %>
+              <div class="form-outline mb-4">
+                <%= f.label :email, class: "text-info" %><br/>
                 <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
               </div>
-              <div class="field">
-                <%= f.label :password, class:"text-info"%><br/>
+              <div class="form-outline mb-4">
+                <%= f.label :password, class: "text-info" %><br/>
                 <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
               </div>
               <% if devise_mapping.rememberable? %>
-                <div class="field">
+                <div class="form-outline mb-4">
                   <%= f.check_box :remember_me %>
-                  <%= f.label :remember_me,class:"text-info" %>
+                  <%= f.label :remember_me, class: "text-info" %>
                 </div>
               <% end %>
               <div class="actions">
-                <%= f.submit "Log in",class: "btn btn-info btn-md" %>
+                <%= f.submit "Log in", class: "btn btn-info btn-md" %>
               </div>
             <% end %>
           </form>
