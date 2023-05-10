@@ -9,11 +9,15 @@ class Admin::SessionsController < Devise::SessionsController
    end
 
   # POST /resource/sign_in
-   def create
-     super
-   end
-
-  # DELETE /resource/sign_out
+  def create
+    @user = User.find_by_email(params[:admin_user][:email])
+    if @user&.client? && @user&.valid_password?(params[:admin_user][:password])
+      flash[:alert] = "You're not authorized to login"
+      redirect_to new_user_session_path
+    else
+      super
+    end
+  end  # DELETE /resource/sign_out
    def destroy
      super
    end
