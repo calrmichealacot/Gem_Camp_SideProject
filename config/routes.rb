@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
+  root 'home#index'
   constraints(AdminDomainConstraint.new) do
-    devise_for :users, as: 'admin', controllers: { sessions: 'admin/sessions'}
+    devise_for :users, as: 'admin', controllers: { sessions: 'admin/sessions' }
     namespace :admin do
       resources :users
     end
@@ -9,10 +10,10 @@ Rails.application.routes.draw do
 
   constraints(ClientDomainConstraint.new) do
     devise_for :users, as: 'client', controllers: { sessions: 'client/sessions', registrations: 'client/registrations' }
-    resources :posts do
+    namespace :client do
     end
   end
-
-  root 'admin/home#index'
 end
+
+
 

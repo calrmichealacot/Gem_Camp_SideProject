@@ -1,7 +1,9 @@
 class Admin::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :check_admin
-
+  def create
+    super
+  end
   def index
     @users = User.all
   end

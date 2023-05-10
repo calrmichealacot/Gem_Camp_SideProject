@@ -11,9 +11,9 @@ class Admin::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     @user = User.find_by_email(params[:admin_user][:email])
-    if @user&.client? && @user&.valid_password?(params[:admin_user][:password])
+    if @user&.admin? && @user&.valid_password?(params[:admin_user][:password])
       flash[:alert] = "You're not authorized to login"
-      redirect_to new_user_session_path
+      redirect_to users_path
     else
       super
     end
@@ -25,7 +25,7 @@ class Admin::SessionsController < Devise::SessionsController
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_in_params
-  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
-  # end
+  def configure_sign_in_params
+     devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
+   end
 end
