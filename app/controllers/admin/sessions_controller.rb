@@ -13,7 +13,7 @@ class Admin::SessionsController < Devise::SessionsController
     @user = User.find_by_email(params[:admin_user][:email])
     if @user&.admin? && @user&.valid_password?(params[:admin_user][:password])
       flash[:alert] = "You're not authorized to login"
-      redirect_to users_path
+      redirect_to new_admin_user_session_path
     else
       super
     end
