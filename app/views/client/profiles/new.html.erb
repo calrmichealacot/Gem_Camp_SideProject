@@ -1,6 +1,0 @@
-<%= form_with(model: @user, url: client_profile_path, method: :patch) do |f| %>
-  <%= f.label :image %><br />
-  <%= f.file_field :image %><br />
-  <%= f.submit 'Save Changes' %><br />
-<% end %>
-<%= link_to 'back', profile_path %>
