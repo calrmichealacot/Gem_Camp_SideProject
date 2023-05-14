@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   constraints(ClientDomainConstraint.new) do
     devise_for :users, as: 'client', controllers: { sessions: 'client/sessions', registrations: 'client/registrations' }
     namespace :client do
+      resources profiles, only:[:show, :edit, :update]
     end
   end
 end
