@@ -1,6 +1,6 @@
 class CreateUserAddress < ActiveRecord::Migration[7.0]
   def change
-    create_table :user_addresses do |t|
+    create_table :user_address do |t|
       t.integer :role
       t.string :name
       t.string :street
