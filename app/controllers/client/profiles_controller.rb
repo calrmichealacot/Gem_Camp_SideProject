@@ -1,7 +1,8 @@
 class Client::ProfilesController < ApplicationController
-  def show
-    @user = current_client_user
-  end
+  before_action :set_user, only: [:show, :edit]
+
+  def show; end
+
   def edit
     @user = current_client_user
   end
@@ -9,15 +10,22 @@ class Client::ProfilesController < ApplicationController
   def update
     @user = current_client_user
     if @user.update(user_params)
-      redirect_to client_profile_path, notice: 'Profile updated successfully.'
+      flash[:notice] = 'Post updated successfully'
+      redirect_to client_profiles_show_path
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
+
     end
   end
 
   private
 
+  def set_user
+    @user = current_client_user
+  end
+
   def user_params
-    params.require(:user).permit( :image, :email, :phone_number)
+    params.require(:user).permit(:image, :email, :phone_number) #:user_address,:username)
   end
 end
+
