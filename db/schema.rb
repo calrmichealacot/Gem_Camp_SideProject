@@ -45,8 +45,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_14_122359) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_addresses", charset: "utf8mb4", force: :cascade do |t|
-    t.integer "role"
+  create_table "user_address", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "role_id"
     t.string "name"
     t.string "street"
     t.string "phone"
@@ -58,10 +58,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_14_122359) do
     t.bigint "address_barangay_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["address_barangay_id"], name: "index_user_addresses_on_address_barangay_id"
-    t.index ["address_city_id"], name: "index_user_addresses_on_address_city_id"
-    t.index ["address_province_id"], name: "index_user_addresses_on_address_province_id"
-    t.index ["address_region_id"], name: "index_user_addresses_on_address_region_id"
+    t.index ["address_barangay_id"], name: "index_user_address_on_address_barangay_id"
+    t.index ["address_city_id"], name: "index_user_address_on_address_city_id"
+    t.index ["address_province_id"], name: "index_user_address_on_address_province_id"
+    t.index ["address_region_id"], name: "index_user_address_on_address_region_id"
+    t.index ["role_id"], name: "index_user_address_on_role_id"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
