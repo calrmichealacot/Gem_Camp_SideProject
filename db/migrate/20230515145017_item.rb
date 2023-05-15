@@ -7,8 +7,6 @@ class Item < ActiveRecord::Migration[7.0]
       t.integer :minimum_bets
       t.string :state
       t.integer :batch_count
-      t.datetime :online_at
-      t.datetime :offline_at
       t.datetime :start_at
       t.integer :status
       t.timestamps
