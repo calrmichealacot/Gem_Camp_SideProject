@@ -12,7 +12,9 @@ Rails.application.routes.draw do
     devise_for :users, as: 'client', controllers: { sessions: 'client/sessions', registrations: 'client/registrations' }
     namespace :client,path: '' do
       resources :profiles, only:[:show, :edit, :update]
+      resources :user_address
       resources :lottery
+      resources :invite
     end
   end
 end
