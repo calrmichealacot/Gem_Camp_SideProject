@@ -1,0 +1,44 @@
+<h3><%= link_to 'New Item', new_admin_item_path %></h3>
+
+<table>
+  <thead>
+  <td>Category</td>
+  <td>Image</td>
+  <td>Name</td>
+  <td>Quantity</td>
+  <td>Minimum Bets</td>
+  <td>State</td>
+  <td>Batch Count</td>
+  <td>Online at</td>
+  <td>Offline at</td>
+  <td>Start at</td>
+  <td>Status</td>
+  <td>Control</td>
+  <td>Action</td>
+  </thead>
+  <% @items.each do |item| %>
+    <tr>
+      <td><%= item.categories.pluck(:name).join(', ') %></td>
+      <td><%= image_tag item.image.url if item.image.present? %></td>
+      <td><%= item.name %></td>
+      <td><%= item.quantity %></td>
+      <td><%= item.minimum_bets %></td>
+      <td><%= item.state %></td>
+      <td><%= item.batch_count %></td>
+      <td><%= item.online_at %></td>
+      <td><%= item.offline_at %></td>
+      <td><%= item.start_at %></td>
+      <td><%= item.status %></td>
+      <td>
+        <%= button_to 'Start', start_admin_item_path(item), class: 'btn btn-success', data: { turbo: false } if item.may_start? %>
+        <%= button_to 'Pause', pause_admin_item_path(item), class: 'btn btn-info', data: { turbo: false } if item.may_pause? %>
+        <%= button_to 'End', end_admin_item_path(item), class: 'btn btn-primary', data: { turbo: false } if item.may_end? %>
+        <%= button_to 'Cancel', cancel_admin_item_path(item), class: 'btn btn-danger', data: { turbo: false } if item.may_cancel? %>
+      </td>
+      <td>
+        <%= link_to 'Edit Item', edit_admin_item_path(item) %>
+        <%= button_to :delete, admin_item_path(item), method: :delete %>
+      </td>
+    </tr>
+  <% end %>
+</table>
